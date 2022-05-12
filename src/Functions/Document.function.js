@@ -24,6 +24,13 @@ async function getDocuments() {
     var response = await db.query(sql);
     return { estado: true, message: "", data: response }
 }
+
+async function getDocumentsType(docType) {
+    var sql = 'SELECT * FROM Document WHERE DocType = "' + docType + '"';
+    var response = await db.query(sql);
+    return { estado: true, message: "", data: response }
+}
+
 async function getDocument(docName, docType) {
 
     var sql = 'SELECT * FROM Document WHERE DocName = "' + docName + '" AND DocType = "' + docType + '"';
@@ -231,5 +238,6 @@ module.exports = {
     updateDocument,
     updateViewCount,
     updateDownloadCount,
-    updateLatestModDate
+    updateLatestModDate,
+    getDocumentsType
 };

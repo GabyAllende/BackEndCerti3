@@ -20,6 +20,12 @@ router.get("/getDocuments", async function(_req, res) {
     resultados = await fnDocument.getDocuments();
     res.send(resultados);
 });
+
+router.get("/getDocumentsType/:docType", async function(req, res) {
+    var resultados = [];
+    resultados = await fnDocument.getDocumentsType(req.params.docType);
+    res.send(resultados);
+});
 // {
 //     "docName":"myFile",
 //     "docType":"PF"
@@ -91,10 +97,12 @@ router.put("/updateDocument", async function(req, res) {
 //     "docPath":"/Equipo/Documents/UPB/Semestre 7/CertificacionIII/"
 // }
 router.get("/downloadDocument", async function(req, res) {
-    const docName = req.body.docName;
-    const docPath = req.body.docPath;
-    const URL = docPath + "/" + docName
-
+    const docName = req.query.docName;
+    const docPath = req.query.docPath;
+    const docType = req.query.docType;
+    const URL = docPath + "/" + docName;
+    await fnDocument.updateViewCount(docName, docType);
+    await fnDocument.updateDownloadCount(docName, docType);
     res.download(URL, docName);
 });
 
