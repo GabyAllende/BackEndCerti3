@@ -20,7 +20,9 @@ router.get("/getDocuments", async function(_req, res) {
     resultados = await fnDocument.getDocuments();
     res.send(resultados);
 });
-
+router.get("/", async function(_req, res) {
+    res.status(200).json({ msg: "se esta intentando..." });
+});
 router.get("/getDocumentsType/:docType", async function(req, res) {
     var resultados = [];
     resultados = await fnDocument.getDocumentsType(req.params.docType);
