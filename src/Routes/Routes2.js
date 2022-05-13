@@ -48,7 +48,8 @@ router.post("/insertDocument", async function(req, res) {
 
 router.post("/postDocument/:doctype", async function(req, res) {
     var resultados = [];
-    const myPath = 'C:/Users/Equipo/Documents/UPB/Semestre 7/CertificacionIII/';
+    const myPath = '/home/ec2-user/';
+    //const myPath = 'C:/Users/Equipo/Documents/UPB/Semestre 7/CertificacionIII/';
     resultados = await fnDocument.postDocument(req, req.params.doctype, myPath);
     res.send(resultados);
 });
