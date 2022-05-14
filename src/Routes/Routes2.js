@@ -14,6 +14,7 @@ const utils = require('nodemon/lib/utils');
 const fnDocument = require('../Functions/Document.function');
 
 const fs = require('fs');
+const myPath = 'C:/Users/Equipo/Documents/UPB/Semestre 7/CertificacionIII/';
 
 router.get("/getDocuments", async function(_req, res) {
     var resultados = [];
@@ -50,7 +51,7 @@ router.post("/insertDocument", async function(req, res) {
 
 router.post("/postDocument/:doctype", async function(req, res) {
     var resultados = [];
-    const myPath = '/home/ec2-user/';
+    //const myPath = '/home/ec2-user/';
     //const myPath = 'C:/Users/Equipo/Documents/UPB/Semestre 7/CertificacionIII/';
     resultados = await fnDocument.postDocument(req, req.params.doctype, myPath);
     res.send(resultados);
@@ -103,9 +104,10 @@ router.get("/downloadDocument", async function(req, res) {
     const docName = req.query.docName;
     const docPath = req.query.docPath;
     const docType = req.query.docType;
-    const URL = docPath + "/" + docName;
+    const URL = myPath + "/" + docPath + "/" + docName;
     await fnDocument.updateViewCount(docName, docType);
     await fnDocument.updateDownloadCount(docName, docType);
+    console.log('URL :>> ', URL);
     res.download(URL, docName);
 });
 

@@ -49,7 +49,7 @@ router.post("/postDocument/:doctype", async function(req, res) {
         const size = file.data.length;
         const extension = path.extname(fileName);
         const allowedExtensions = /png|jpg|jpeg|gif|docx|pdf/;
-        const URL = '/home/ec2-user/' + folder;
+        const URL = '/var/www/html/' + folder;
         //const URL = 'C:/Users/Equipo/Documents/UPB/Semestre 7/CertificacionIII/' + folder;
 
         //VERIFICAMOS QUE NO EXISTA YA ESE FILE

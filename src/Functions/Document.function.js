@@ -75,7 +75,7 @@ async function postDocument(req, docType, myPath) {
             if (size > 1000000000) throw new Error("File must be less than 1GB!");
 
             await util.promisify(file.mv)(URL + '/' + fileName);
-            var miRes = await insertDocument(fileName, docType, URL);
+            var miRes = await insertDocument(fileName, docType, folder);
             return { estado: true, message: "Document posted successfully", data: miRes.data }
         } catch (err) {
             return { estado: false, message: String(err), data: null }
